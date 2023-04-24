@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+    {% load static %}
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dogs and Cats</title>
@@ -12,50 +14,52 @@
     <!-- Include Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.2.0/css/bootstrap.min.css">
 
-    <!-- Include Petite-Vue library -->
-    <script src="https://unpkg.com/petite-vue@1.0.3/dist/petite-vue.min.js"></script>
+    <!-- Include Vue library -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
 
-    <!-- Include static file for Petite-Vue -->
-    {% load static %}
-    <script src="{% static 'js/petite-vue.min.js' %}"></script>
+    <!-- Include static file for Vue -->
+    <script src="{% static 'js/dog-image.vue' %}"></script>
+    
 
 </head>
-<body onload="fetchDog()" class="bg-red">
+<body onload="fetchDogImage()" class="bg-red">
+    <script>
+        new Vue({
+          el: '#app',
+        });
+    </script>
     <div class="p-6 max-w-sm mx-auto bg-white rounded-xl shadow-lg flex items-center space-x-4">
         <div class="shrink-0">
             <img class="h-12 w-12" src="https://img.icons8.com/bubbles/256/dog.png" alt="dog icon">
         </div>
 
         <div class="text-xl font-medium text-black">
-            <button onclick="fetchDog()" >Fetch Dog</button>
+            <button id="fetchDogBtn" onclick="fetchDogImage()" >Fetch Dog</button>
         </div>
 
     </div>
 
     <!--padding, max width, center, bg, rounder corners, shadow, flex, center items, padding between child elements -->
-
-    <div class="p-6 max-w-xs mx-auto bg-white rounded-xl shadow-lg flex items-center space-x-4">
-        <img  id="dogImage" src="" alt="Click to get a dog">
+    <div id="app">
+      <dog-image>
+          <div class="p-6 max-w-xs mx-auto bg-white rounded-xl shadow-lg flex items-center space-x-4">
+            <img  id="dogImage" src="" alt="Click to get a dog">
+        </div>
+    </dog-image>
     </div>
 
+<!-- 
+
     <script>
-        function fetchDog() {
-
-            // Send GET request to Flask API endpoint
-            $.get('/apps/fetchdog/get_dog', function(data) {
-
-                // Extract the 'message' from the JSON response
+        function fetchDogImage() {
+            $.get('/get_dog/', function(data) {
                 var message = data['message'];
-
-                // Set the 'src' attribute of the 'img' element to display the dog image
                 $('#dogImage').attr('src', message);
-
             })
             .fail(function() {
                 console.log('Failed to fetch dog image.');
-
             });
         }
-    </script>
+    </script> -->
 </body>
 </html>
