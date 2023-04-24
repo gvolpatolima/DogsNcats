@@ -9,25 +9,18 @@
 
     <!-- Include jQuery library -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- Include Tailwind library -->
     <script src="https://cdn.tailwindcss.com"></script>
 
     <!-- Include Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.2.0/css/bootstrap.min.css">
-
-    <!-- Include Vue library -->
-    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
-
-    <!-- Include static file for Vue -->
-    <script src="{% static 'js/dog-image.vue' %}"></script>
     
 
 </head>
 <body onload="fetchDogImage()" class="bg-red">
-    <script>
-        new Vue({
-          el: '#app',
-        });
-    </script>
+
+
     <div class="p-6 max-w-sm mx-auto bg-white rounded-xl shadow-lg flex items-center space-x-4">
         <div class="shrink-0">
             <img class="h-12 w-12" src="https://img.icons8.com/bubbles/256/dog.png" alt="dog icon">
@@ -40,15 +33,12 @@
     </div>
 
     <!--padding, max width, center, bg, rounder corners, shadow, flex, center items, padding between child elements -->
-    <div id="app">
-      <dog-image>
-          <div class="p-6 max-w-xs mx-auto bg-white rounded-xl shadow-lg flex items-center space-x-4">
-            <img  id="dogImage" src="" alt="Click to get a dog">
-        </div>
-    </dog-image>
-    </div>
 
-<!-- 
+          <div class="p-6 max-w-xs mx-auto bg-white rounded-xl shadow-lg flex items-center space-x-4">
+            <img id="dogImage" src="" alt="Click to get a dog">
+        </div>
+
+
 
     <script>
         function fetchDogImage() {
@@ -60,6 +50,6 @@
                 console.log('Failed to fetch dog image.');
             });
         }
-    </script> -->
+    </script>
 </body>
 </html>
