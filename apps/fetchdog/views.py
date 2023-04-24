@@ -1,7 +1,5 @@
-from django.shortcuts import render
-
-def index(request):
-    return render(request, 'pages/index.html')
+from flask import jsonify
+import requests
 
 def get_dog():
     """
