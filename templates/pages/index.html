@@ -7,18 +7,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dogs and Cats</title>
 
-    <!-- Include jQuery library -->
+     <!-- Include jQuery library  -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-    <!-- Include Tailwind library -->
+     <!-- Include Tailwind library  -->
     <script src="https://cdn.tailwindcss.com"></script>
 
-    <!-- Include Bootstrap CSS -->
+     <!-- Include Bootstrap CSS  -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.2.0/css/bootstrap.min.css">
     
 
 </head>
 <body onload="fetchDogImage()" class="bg-red">
+    <style>
+        .slider {
+            max-height: 300px;
+            overflow: hidden;
+            transition: max-height 0.5s ease-in-out;
+        }
+
+        .slider img {
+            display: block;
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
 
 
     <div class="p-6 max-w-sm mx-auto bg-white rounded-xl shadow-lg flex items-center space-x-4">
@@ -27,15 +40,15 @@
         </div>
 
         <div class="text-xl font-medium text-black">
-            <button id="fetchDogBtn" onclick="fetchDogImage()" >Fetch Dog</button>
+            <button id="fetchDogBtn" onclick="fetchDogImage()" >Fetch new dogs</button>
         </div>
 
     </div>
 
-    <!--padding, max width, center, bg, rounder corners, shadow, flex, center items, padding between child elements -->
+    <!-- padding, max width, center, bg, rounder corners, shadow, flex, center items, padding between child elements  -->
 
-          <div class="p-6 max-w-xs mx-auto bg-white rounded-xl shadow-lg flex items-center space-x-4">
-            <img id="dogImage" src="" alt="Click to get a dog">
+        <div class="p-6 max-w-xs mx-auto bg-white rounded-xl shadow-lg flex items-center space-x-4 slider" id=imageSlider>
+            <img id="dogImage" src="" alt="Wait to get a dog">
         </div>
 
 
@@ -49,7 +62,10 @@
             .fail(function() {
                 console.log('Failed to fetch dog image.');
             });
-        }
+       }
+
+
+
     </script>
 </body>
 </html>
