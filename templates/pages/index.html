@@ -19,19 +19,6 @@
 
 </head>
 <body onload="fetchDogImage()" class="bg-red">
-    <style>
-        .slider {
-            max-height: 300px;
-            overflow: hidden;
-            transition: max-height 0.5s ease-in-out;
-        }
-
-        .slider img {
-            display: block;
-            max-width: 100%;
-            height: auto;
-        }
-    </style>
 
 
     <div class="p-6 max-w-sm mx-auto bg-white rounded-xl shadow-lg flex items-center space-x-4">
@@ -47,14 +34,15 @@
 
     <!-- padding, max width, center, bg, rounder corners, shadow, flex, center items, padding between child elements  -->
 
-        <div class="p-6 max-w-xs mx-auto bg-white rounded-xl shadow-lg flex items-center space-x-4 slider" id=imageSlider>
+        <div class="p-6 max-w-xs mx-auto bg-white rounded-xl shadow-lg flex items-center space-x-4 " >
             <img id="dogImage" src="" alt="Wait to get a dog">
         </div>
 
 
-
-    <div id="image"></div>
-
+        <div class="p-6 max-w-xs mx-auto bg-white rounded-xl shadow-lg flex items-center space-x-4 " >
+            <div id="image"></div>
+        </div>
+    
 
     <script>
     function ajax_get(url, callback) {
