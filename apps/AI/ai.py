@@ -85,4 +85,12 @@ train_image_generator = ImageDataGenerator(
     fill_mode='nearest'
 )
 
+# 6
+train_data_gen = train_image_generator.flow_from_directory(batch_size=batch_size,
+                                                     directory=train_dir,
+                                                     target_size=(IMG_HEIGHT, IMG_WIDTH),
+                                                     class_mode='binary')
 
+augmented_images = [train_data_gen[0][0][0] for i in range(5)]
+
+plotImages(augmented_images)
