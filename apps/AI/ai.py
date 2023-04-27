@@ -13,3 +13,8 @@ PATH = 'cats_and_dogs'
 train_dir = os.path.join(PATH, 'train')
 validation_dir = os.path.join(PATH, 'validation')
 test_dir = os.path.join(PATH, 'test')
+
+batch_size = 128
+epochs = 15
+IMG_HEIGHT = 150
+IMG_WIDTH = 150
