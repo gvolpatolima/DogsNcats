@@ -108,3 +108,11 @@ model = Sequential([
 ])
 
 model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['accuracy'])
+
+history = model.fit(
+    train_data_gen,
+    steps_per_epoch=train_data_gen.n // train_data_gen.batch_size,
+    epochs=epochs,
+    validation_data=val_data_gen,
+    validation_steps=val_data_gen.n // val_data_gen.batch_size
+)
