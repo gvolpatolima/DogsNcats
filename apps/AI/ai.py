@@ -138,3 +138,8 @@ plt.plot(epochs_range, val_loss, label='Validation Loss')
 plt.legend(loc='upper right')
 plt.title('Training and Validation Loss')
 plt.show()
+
+probabilities = model.predict(test_data_gen)
+
+plotImages(test_data_gen, probabilities)
+
