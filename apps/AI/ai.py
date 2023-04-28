@@ -8,7 +8,6 @@ import os
 import numpy as np
 import matplotlib.pyplot as plt
 
-# PATH = os.path.dirname(os.path.abspath('cats_and_dogs/'))
 
 cwd = os.getcwd()
 
@@ -24,7 +23,7 @@ total_val = sum([len(files) for r, d, files in os.walk(validation_dir)])
 total_test = sum([len(files) for r, d, files in os.walk(test_dir)])
 
 
-# Variables for pre-processing and training.
+
 batch_size = 128
 epochs = 15
 IMG_HEIGHT = 150
@@ -143,3 +142,25 @@ probabilities = model.predict(test_data_gen)
 
 plotImages(test_data_gen, probabilities)
 
+answers =  [1, 0, 0, 1, 0, 0, 0, 0, 1, 1, 0,
+            1, 0, 1, 0, 1, 1, 0, 1, 1, 0, 0,
+            1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 1,
+            1, 0, 1, 1, 1, 1, 0, 1, 0, 1, 1, 
+            0, 0, 0, 0, 0, 0]
+
+correct = 0
+
+for probability, answer in zip(probabilities, answers):
+  if round(probability) == answer:
+    correct +=1
+
+percentage_identified = (correct / len(answers)) * 100
+
+passed_challenge = percentage_identified >= 63
+
+print(f"Your model correctly identified {round(percentage_identified, 2)}% of the images of cats and dogs.")
+
+if passed_challenge:
+  print("You passed the challenge!")
+else:
+  print("You haven't passed yet. Your model should identify at least 63% of the images. Keep trying. You will get it!")
