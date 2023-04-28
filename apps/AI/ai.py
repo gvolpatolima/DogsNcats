@@ -139,8 +139,11 @@ plt.title('Training and Validation Loss')
 plt.show()
 
 probabilities = model.predict(test_data_gen)
+probabilities = [int(round(p[0])) for p in probabilities]
 
-plotImages(test_data_gen, probabilities)
+test_images, _ = next(test_data_gen)
+
+plotImages(test_images, probabilities)
 
 answers =  [1, 0, 0, 1, 0, 0, 0, 0, 1, 1, 0,
             1, 0, 1, 0, 1, 1, 0, 1, 1, 0, 0,
