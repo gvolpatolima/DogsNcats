@@ -1,3 +1,5 @@
+# Importing necessary libraries
+
 import tensorflow as tf
 
 from tensorflow.keras.models import Sequential
@@ -8,6 +10,7 @@ import os
 import numpy as np
 import matplotlib.pyplot as plt
 
+# Get the relative path to the database
 
 cwd = os.getcwd()
 
@@ -17,17 +20,18 @@ train_dir = os.path.join(cwd, 'apps', 'AI', 'cats_and_dogs', 'train')
 validation_dir = os.path.join(cwd, 'apps', 'AI', 'cats_and_dogs', 'validation')
 test_dir = os.path.join(cwd, 'apps', 'AI', 'cats_and_dogs', 'test')
 
+# Fetch the files
 
 total_train = sum([len(files) for r, d, files in os.walk(train_dir)])
 total_val = sum([len(files) for r, d, files in os.walk(validation_dir)])
 total_test = sum([len(files) for r, d, files in os.walk(test_dir)])
 
-
-
 batch_size = 128
 epochs = 15
 IMG_HEIGHT = 150
 IMG_WIDTH = 150
+
+# Format the images to the correct size so the AI can interpret them
 
 train_image_generator = ImageDataGenerator(rescale=1./255)
 validation_image_generator = ImageDataGenerator(rescale=1./255)
@@ -54,6 +58,8 @@ test_data_gen = test_image_generator.flow_from_directory(
     shuffle=False,
 )
 
+# Plot Images function given by FCC
+
 def plotImages(images_arr, probabilities = False):
     fig, axes = plt.subplots(len(images_arr), 1, figsize=(5,len(images_arr) * 3))
     if probabilities is False:
@@ -70,8 +76,12 @@ def plotImages(images_arr, probabilities = False):
               ax.set_title("%.2f" % ((1-probability)*100) + "% cat")
     plt.show()
 
+# Testing if train_data_gen is correct
+
 sample_training_images, _ = next(train_data_gen)
 plotImages(sample_training_images[:5])
+
+# Preventing overfitting
 
 train_image_generator = ImageDataGenerator(
     rescale=1./255,
@@ -84,15 +94,16 @@ train_image_generator = ImageDataGenerator(
     fill_mode='nearest'
 )
 
-# 6
 train_data_gen = train_image_generator.flow_from_directory(batch_size=batch_size,
-                                                     directory=train_dir,
-                                                     target_size=(IMG_HEIGHT, IMG_WIDTH),
-                                                     class_mode='binary')
+    directory=train_dir,
+    target_size=(IMG_HEIGHT, IMG_WIDTH),
+    class_mode='binary')
 
 augmented_images = [train_data_gen[0][0][0] for i in range(5)]
 
 plotImages(augmented_images)
+
+# Create the model
 
 model = Sequential([
     Conv2D(16, (3,3), activation='relu', input_shape=(IMG_HEIGHT, IMG_WIDTH, 3)),
