@@ -24,6 +24,29 @@ def get_dog(request):
     except Exception as e:
         # Handle any exceptions that may occur during the API request
         return JsonResponse({'error': str(e)}, status=500)
+    
+def get_cat(request):
+    """
+    Fetches a random cat image URL from 'https://api.thecatapi.com/v1/images/search?size=full' and returns as JSON response.
+    """
+    try:
+        # Send GET request to the API endpoint
+        response = requests.get('https://api.thecatapi.com/v1/images/search?size=full')
+
+        # Check if the response is successful (status code 200)
+        if response.status_code == 200:
+            # Extract the JSON data from the response
+            data = response.json()
+            # Extract the 'url' key from the JSON data
+            url = data['url']
+            # Return the 'url' as JSON response
+            return JsonResponse({'url': url})
+        else:
+            # If the response is unsuccessful, raise an exception
+            response.raise_for_status()
+    except Exception as e:
+        # Handle any exceptions that may occur during the API request
+        return JsonResponse({'error': str(e)}, status=500)
 
 def index(request):
     return render(request, 'pages/index.html')
