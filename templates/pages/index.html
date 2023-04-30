@@ -45,64 +45,73 @@
             </div>
     
             <div class="text-xl font-medium text-black">
-                <button id="fetchCatBtn">Fetch new cats</button>
+                <button id="fetchCatBtn" onclick="fetchCatImage()">Fetch new cats</button>
             </div>
     
         </div>
 
         <div class="p-6 max-w-xs mx-auto bg-white rounded-xl shadow-lg flex items-center space-x-4 " >
-            <div id="image"></div>
+            <div id="catImage"></div>
         </div>
     
 
     <script>
-    function ajax_get(url, callback) {
-      var xmlhttp = new XMLHttpRequest();
-      xmlhttp.onreadystatechange = function() {
-        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-          console.log('responseText:' + xmlhttp.responseText);
-          try {
-            var data = JSON.parse(xmlhttp.responseText);
-          } catch (err) {
-            console.log(err.message + " in " + xmlhttp.responseText);
-            return;
-          }
-          callback(data);
-        }
-      };
+    // function ajax_get(url, callback) {
+    //   var xmlhttp = new XMLHttpRequest();
+    //   xmlhttp.onreadystatechange = function() {
+    //     if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+    //       console.log('responseText:' + xmlhttp.responseText);
+    //       try {
+    //         var data = JSON.parse(xmlhttp.responseText);
+    //       } catch (err) {
+    //         console.log(err.message + " in " + xmlhttp.responseText);
+    //         return;
+    //       }
+    //       callback(data);
+    //     }
+    //   };
 
-      xmlhttp.open("GET", url, true);
-      xmlhttp.send();
-    }
+    //   xmlhttp.open("GET", url, true);
+    //   xmlhttp.send();
+    // }
 
-    ajax_get('https://api.thecatapi.com/v1/images/search?size=full', function(data) {
-      var html = '<img src="' + data[0]["url"] + '">';
-      document.getElementById("image").innerHTML = html;
-    });
+    // ajax_get('https://api.thecatapi.com/v1/images/search?size=full', function(data) {
+    //   var html = '<img src="' + data[0]["url"] + '">';
+    //   document.getElementById("image").innerHTML = html;
+    // });
     </script>
 
 
-    <script>
-        function fetchDogImage() {
-            $.get('/get_dog/', function(data) {
-                var message = data['message'];
-                $('#dogImage').attr('src', message);
-            })
-            .fail(function() {
-                console.log('Failed to fetch dog image.');
-            });
-       }
-
-
-
-       document.getElementById("fetchCatBtn").onclick = function() {
-    // Call ajax_get with a callback function
-    ajax_get('https://api.thecatapi.com/v1/images/search?size=full', function(data) {
-        // Callback function, called after response is received
-        var html = '<img src="' + data[0]["url"] + '">'; // Assuming the response contains an array with an object with a "url" property
-        document.getElementById("image").innerHTML = html;
+<script>
+function fetchDogImage() {
+    $.get('/get_dog/', function(data) {
+        var message = data['message'];
+        $('#dogImage').attr('src', message);
+    })
+    .fail(function() {
+        console.log('Failed to fetch dog image.');
     });
-};
+}
+function fetchCatImage() {
+    $.get('/get_cat/', function(data) {
+        var url = data['url'];
+        $('#catImage').attr('src', url);
+    })
+    .fail(function() {
+        console.log('Failed to fetch cat image.');
+    });
+}
+
+
+
+//        document.getElementById("fetchCatBtn").onclick = function() {
+//     // Call ajax_get with a callback function
+//     ajax_get('https://api.thecatapi.com/v1/images/search?size=full', function(data) {
+//         // Callback function, called after response is received
+//         var html = '<img src="' + data[0]["url"] + '">'; // Assuming the response contains an array with an object with a "url" property
+//         document.getElementById("image").innerHTML = html;
+//     });
+// };
 
     </script>
 </body>

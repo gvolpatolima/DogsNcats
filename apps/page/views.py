@@ -38,7 +38,7 @@ def get_cat(request):
             # Extract the JSON data from the response
             data = response.json()
             # Extract the 'url' key from the JSON data
-            url = data['url']
+            url = data[0]['url']
             # Return the 'url' as JSON response
             return JsonResponse({'url': url})
         else:
