@@ -34,7 +34,7 @@
     <!-- padding, max width, center, bg, rounder corners, shadow, flex, center items, padding between child elements  -->
 
         <div class="p-6 max-w-xs mx-auto bg-white rounded-xl shadow-lg flex items-center space-x-4 " >
-            <img id="dogImage" src="" alt="Wait to get a dog">
+            <img id="dogImage" src="" alt="Wait to get a dog"></img>
         </div>
 
 
@@ -51,9 +51,11 @@
         </div>
 
         <div class="p-6 max-w-xs mx-auto bg-white rounded-xl shadow-lg flex items-center space-x-4 " >
-            <img id="catImage"></img>
+            <img id="catImage" alt="Wait to get a dog"></img>
         </div>
-    
+        <div class="p-6 max-w-xs mx-auto bg-white rounded-xl shadow-lg flex items-center space-x-4 " >
+            <span class="text-xl font-medium text-black" id="catLabel"></span>
+        </div>
 
 
 
@@ -63,6 +65,7 @@ function fetchDogImage() {
     $.get('/get_dog/', function(data) {
         var message = data['message'];
         $('#dogImage').attr('src', message);
+        $('#dogLabel').text('The ai has classified this as a ' + label);
     })
     .fail(function() {
         console.log('Failed to fetch dog image.');
@@ -72,12 +75,15 @@ function fetchDogImage() {
 function fetchCatImage() {
     $.get('/get_cat/', function(data) {
         var url = data['url'];
+        var label = data['label'];
         $('#catImage').attr('src', url);
+        $('#catLabel').text('The ai has classified this as a ' + label);
     })
     .fail(function() {
         console.log('Failed to fetch cat image.');
     });
 }
+
 
     </script>
 </body>
