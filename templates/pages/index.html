@@ -17,7 +17,7 @@
     
 
 </head>
-<body onload="fetchDogImage()" class="bg-cover bg-center" style="background-image: url('https://images.pexels.com/photos/952670/pexels-photo-952670.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1')">
+<body onload="fetchDogImage(), fetchCatImage()" class="bg-cover bg-center" style="background-image: url('https://images.pexels.com/photos/952670/pexels-photo-952670.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1')">
 
 
     <div class="p-6 max-w-sm mx-auto bg-white rounded-xl shadow-lg flex items-center space-x-4">
@@ -51,38 +51,14 @@
         </div>
 
         <div class="p-6 max-w-xs mx-auto bg-white rounded-xl shadow-lg flex items-center space-x-4 " >
-            <div id="catImage"></div>
+            <img id="catImage"></img>
         </div>
     
 
-    <script>
-    // function ajax_get(url, callback) {
-    //   var xmlhttp = new XMLHttpRequest();
-    //   xmlhttp.onreadystatechange = function() {
-    //     if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-    //       console.log('responseText:' + xmlhttp.responseText);
-    //       try {
-    //         var data = JSON.parse(xmlhttp.responseText);
-    //       } catch (err) {
-    //         console.log(err.message + " in " + xmlhttp.responseText);
-    //         return;
-    //       }
-    //       callback(data);
-    //     }
-    //   };
-
-    //   xmlhttp.open("GET", url, true);
-    //   xmlhttp.send();
-    // }
-
-    // ajax_get('https://api.thecatapi.com/v1/images/search?size=full', function(data) {
-    //   var html = '<img src="' + data[0]["url"] + '">';
-    //   document.getElementById("image").innerHTML = html;
-    // });
-    </script>
 
 
 <script>
+
 function fetchDogImage() {
     $.get('/get_dog/', function(data) {
         var message = data['message'];
@@ -92,6 +68,7 @@ function fetchDogImage() {
         console.log('Failed to fetch dog image.');
     });
 }
+
 function fetchCatImage() {
     $.get('/get_cat/', function(data) {
         var url = data['url'];
@@ -101,17 +78,6 @@ function fetchCatImage() {
         console.log('Failed to fetch cat image.');
     });
 }
-
-
-
-//        document.getElementById("fetchCatBtn").onclick = function() {
-//     // Call ajax_get with a callback function
-//     ajax_get('https://api.thecatapi.com/v1/images/search?size=full', function(data) {
-//         // Callback function, called after response is received
-//         var html = '<img src="' + data[0]["url"] + '">'; // Assuming the response contains an array with an object with a "url" property
-//         document.getElementById("image").innerHTML = html;
-//     });
-// };
 
     </script>
 </body>
