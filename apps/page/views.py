@@ -1,6 +1,10 @@
 from django.http import JsonResponse
 import requests
 from django.shortcuts import render
+import json
+import requests
+from PIL import Image
+from io import BytesIO
 
 def get_dog(request):
     """
@@ -25,6 +29,7 @@ def get_dog(request):
         # Handle any exceptions that may occur during the API request
         return JsonResponse({'error': str(e)}, status=500)
     
+    
 def get_cat(request):
     """
     Fetches a random cat image URL from 'https://api.thecatapi.com/v1/images/search?size=full' and returns as JSON response.
@@ -47,6 +52,9 @@ def get_cat(request):
     except Exception as e:
         # Handle any exceptions that may occur during the API request
         return JsonResponse({'error': str(e)}, status=500)
+
+def index(request):
+    return render(request, 'pages/index.html')
 
 def index(request):
     return render(request, 'pages/index.html')
