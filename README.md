@@ -19,6 +19,7 @@ Features
     Django
 
 ![Screenshot screenshot](001.png)
+![Screenshot screenshot](002.png)
 
 ## Usage
 
