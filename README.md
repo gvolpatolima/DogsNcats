@@ -38,4 +38,4 @@ Features
 
 ## License
 
-This website is open-source and available under the [MIT License](LICENSE). You are free to use, modify, and distribute this code for any purpose. However, please note that the AI model used for image classification may have its own licensing and usage requirements. Please refer to the TensorFlow.js documentation for more information on using TensorFlow.js in your projects.
+This website is open-source and available under the [MIT License](LICENSE). You are free to use, modify, and distribute this code for any purpose. 
