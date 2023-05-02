@@ -29,6 +29,10 @@
             <button id="fetchDogBtn" onclick="fetchDogImage()" >Fetch new dogs</button>
         </div>
 
+        <div class="text-xl font-medium text-black">
+            <button id="show-div" >AI classify</button>
+        </div>
+
     </div>
 
     <!-- padding, max width, center, bg, rounder corners, shadow, flex, center items, padding between child elements  -->
@@ -36,7 +40,7 @@
         <div class="p-6 max-w-xs mx-auto bg-white rounded-xl shadow-lg flex items-center space-x-4 " >
             <img id="dogImage" src="" alt="Wait to get a dog"></img>
         </div>
-        <div class="p-6 max-w-xs mx-auto bg-white rounded-xl shadow-lg flex items-center space-x-4 " >
+        <div id="hidden" style="display: none;" class="p-6 max-w-xs mx-auto bg-white rounded-xl shadow-lg flex items-center space-x-4 " >
             <span class="text-xl font-medium text-black" id="dogLabel"></span>
         </div>
 
@@ -49,17 +53,33 @@
     
             <div class="text-xl font-medium text-black">
                 <button id="fetchCatBtn" onclick="fetchCatImage()">Fetch new cats</button>
+
+            <div class="text-xl font-medium text-black">
+                <button id="show-div" >AI classify</button>
+            </div>
+            
             </div>
     
         </div>
-
+        
         <div class="p-6 max-w-xs mx-auto bg-white rounded-xl shadow-lg flex items-center space-x-4 " >
             <img id="catImage" alt="Wait to get a cat"></img>
         </div>
-        <div class="p-6 max-w-xs mx-auto bg-white rounded-xl shadow-lg flex items-center space-x-4 " >
+        <div id="hidden" style="display: none;" class="p-6 max-w-xs mx-auto bg-white rounded-xl shadow-lg flex items-center space-x-4 " >
             <span class="text-xl font-medium text-black" id="catLabel"></span>
         </div>
 
+
+<script>
+    const showDivButton = document.getElementById("show-div");
+    const hiddenDiv = document.getElementById("hidden");
+
+    showDivButton.addEventListener("click", function() {
+    hiddenDiv.style.display = "block";
+});
+
+
+</script>
 
 
 <script>
@@ -70,6 +90,7 @@ function fetchDogImage() {
         var label = data['label'];
         $('#dogImage').attr('src', message);
         $('#dogLabel').text('The AI has classified this as a ' + label);
+        hiddenDiv.style.display = "none";
     })
     .fail(function() {
         console.log('Failed to fetch dog image.');
