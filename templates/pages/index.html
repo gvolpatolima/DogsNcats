@@ -36,6 +36,9 @@
         <div class="p-6 max-w-xs mx-auto bg-white rounded-xl shadow-lg flex items-center space-x-4 " >
             <img id="dogImage" src="" alt="Wait to get a dog"></img>
         </div>
+        <div class="p-6 max-w-xs mx-auto bg-white rounded-xl shadow-lg flex items-center space-x-4 " >
+            <span class="text-xl font-medium text-black" id="dogLabel"></span>
+        </div>
 
 
 
@@ -51,7 +54,7 @@
         </div>
 
         <div class="p-6 max-w-xs mx-auto bg-white rounded-xl shadow-lg flex items-center space-x-4 " >
-            <img id="catImage" alt="Wait to get a dog"></img>
+            <img id="catImage" alt="Wait to get a cat"></img>
         </div>
         <div class="p-6 max-w-xs mx-auto bg-white rounded-xl shadow-lg flex items-center space-x-4 " >
             <span class="text-xl font-medium text-black" id="catLabel"></span>
@@ -64,8 +67,9 @@
 function fetchDogImage() {
     $.get('/get_dog/', function(data) {
         var message = data['message'];
+        var label = data['label'];
         $('#dogImage').attr('src', message);
-        $('#dogLabel').text('The ai has classified this as a ' + label);
+        $('#dogLabel').text('The AI has classified this as a ' + label);
     })
     .fail(function() {
         console.log('Failed to fetch dog image.');
@@ -77,7 +81,7 @@ function fetchCatImage() {
         var url = data['url'];
         var label = data['label'];
         $('#catImage').attr('src', url);
-        $('#catLabel').text('The ai has classified this as a ' + label);
+        $('#catLabel').text('The AI has classified this as a ' + label);
     })
     .fail(function() {
         console.log('Failed to fetch cat image.');
