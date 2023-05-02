@@ -15,7 +15,7 @@ Features
     CSS
     JavaScript
     Tailwind CSS (optional, for styling)
-    TensorFlow.js (for image classification)
+    TensorFlow (for image classification)
     Django
 
 ![Screenshot screenshot](001.png)
