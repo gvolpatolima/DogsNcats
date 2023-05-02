@@ -12,9 +12,15 @@ import numpy as np
 IMG_HEIGHT = 150
 IMG_WIDTH = 150
 
+
+
+
+    
 def get_dog(request):
     """
-    Fetches a random dog image URL from 'https://dog.ceo/api/breeds/image/random' and returns as JSON response.
+    Fetches a random cat image URL from 'https://dog.ceo/api/breeds/image/random',
+    uses a pre-trained model to predict if the image contains a dog or a cat, and returns the
+    URL and the predicted label as a JSON response.
     """
     try:
         # Send GET request to the API endpoint
@@ -24,21 +30,49 @@ def get_dog(request):
         if response.status_code == 200:
             # Extract the JSON data from the response
             data = response.json()
-            # Extract the 'message' key from the JSON data
+            # Extract the 'url' key from the JSON data
             message = data['message']
-            # Return the 'message' as JSON response
-            return JsonResponse({'message': message})
-        else:
-            # If the response is unsuccessful, raise an exception
-            response.raise_for_status()
+
+            # Load the model
+            model = tf.keras.models.load_model('cat_dog_classifier.h5')
+
+            # Request the image from the URL and get the content
+            response = requests.get(message)
+            image_content = response.content
+
+            # Decode the image data and create a PIL image object
+            image = Image.open(BytesIO(image_content))
+            # Resize the image to the expected size
+            image = image.resize((IMG_WIDTH, IMG_HEIGHT))
+            # Convert the PIL image to a numpy array
+            image_array = np.array(image)
+            # Normalize the image data
+            image_array = image_array / 255.0
+            # Return the 'message' and the predicted label as a JSON response
+            # Add an extra dimension to the image array to match the input shape of the model
+            image_array = np.expand_dims(image_array, axis=0)
+
+            # Use the model to predict the class of the image
+            prediction = model.predict(image_array)
+
+            if prediction >= 0.5:
+                label = 'dog'
+            else:
+                label = 'cat'
+
+            return JsonResponse({'message': message, 'label': label})
+
     except Exception as e:
-        # Handle any exceptions that may occur during the API request
-        return JsonResponse({'error': str(e)}, status=500)
+        print(e)
+        return JsonResponse({'error': 'Failed to fetch cat image.'})
+    
     
     
 def get_cat(request):
     """
-    Fetches a random cat image URL from 'https://api.thecatapi.com/v1/images/search?size=full' and returns as JSON response.
+    Fetches a random cat image URL from 'https://api.thecatapi.com/v1/images/search?size=full',
+    uses a pre-trained model to predict if the image contains a dog or a cat, and returns the
+    URL and the predicted label as a JSON response.
     """
     try:
         # Send GET request to the API endpoint
@@ -66,7 +100,7 @@ def get_cat(request):
             image_array = np.array(image)
             # Normalize the image data
             image_array = image_array / 255.0
-            # Return the 'url' as JSON response
+            # Return the 'url' and the predicted label as a JSON response
             # Add an extra dimension to the image array to match the input shape of the model
             image_array = np.expand_dims(image_array, axis=0)
 
@@ -77,13 +111,13 @@ def get_cat(request):
                 label = 'dog'
             else:
                 label = 'cat'
+
             return JsonResponse({'url': url, 'label': label})
-        else:
-            # If the response is unsuccessful, raise an exception
-            response.raise_for_status()
+
     except Exception as e:
-        # Handle any exceptions that may occur during the API request
-        return JsonResponse({'error': str(e)}, status=500)
+        print(e)
+        return JsonResponse({'error': 'Failed to fetch cat image.'})
+
 
 
 def index(request):
