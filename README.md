@@ -24,6 +24,7 @@ Features
 
     Clone the repository to your local machine.
     Install the requirements.
+    Run git-lfs pull
     Run python manage.py runserver.
     Click on the "Fetch new dogs, cats" button to display a random image of a dog or a cat.
     Click on the "Classify Image" button to use the AI-powered image classification feature to determine whether the displayed image is a dog or a cat.
