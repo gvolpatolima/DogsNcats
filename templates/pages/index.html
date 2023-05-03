@@ -21,61 +21,87 @@
 
 <!-- padding, max width, center, bg, rounder corners, shadow, flex, center items, padding between child elements  -->
 <div class="p-6 max-w-sm mx-auto bg-white rounded-xl shadow-lg flex items-center space-x-4">
+
     <!-- Icon -->
     <div class="shrink-0">
+
         <img class="h-12 w-12" src="https://img.icons8.com/bubbles/256/dog.png" alt="dog icon">
+
     </div>
 
     <!-- Fetch button -->
     <div class="text-xl font-medium text-black">
+
         <button id="fetchDogBtn" onclick="fetchDogImage()" >Fetch new dogs</button>
+
     </div>
 
     <!-- Classify button -->
     <div class="text-xl font-medium text-black">
+
         <button id="show-div" >AI classify</button>
+
     </div>
 
 </div>  
 
 <!-- dogImage element -->
 <div class="p-6 max-w-xs mx-auto bg-white rounded-xl shadow-lg flex items-center space-x-4 " >
+
     <img id="dogImage" src="" alt="Wait to get a dog"></img>
+
 </div>
 
-<!-- Dog Label -->
+<!-- Hidden Classify Div -->
 <div id="hidden" style="display: none;" class="p-6 max-w-xs mx-auto bg-white rounded-xl shadow-lg flex items-center space-x-4 " >
+
+    <!-- Dog Label -->
     <span class="text-xl font-medium text-black" id="dogLabel"></span>
+
 </div>
 
 
 <!-- padding, max width, center, bg, rounder corners, shadow, flex, center items, padding between child elements  -->
 <div class="p-6 max-w-sm mx-auto bg-white rounded-xl shadow-lg flex items-center space-x-4">
+
     <!-- Icon -->
     <div class="shrink-0">
+
         <img class="h-12 w-12" src="https://img.icons8.com/fluency/256/kitty.png" alt="dog icon">
+
     </div>
 
     <!-- Fetch button -->
     <div class="text-xl font-medium text-black">
+
         <button id="fetchCatBtn" onclick="fetchCatImage()">Fetch new cats</button>
+
     </div>
 
     <!-- Classify button -->
     <div class="text-xl font-medium text-black">
+
         <button id="show-div" >AI classify</button>
+
     </div>
+
 </div>
        
+
 <!-- padding, max width, center, bg, rounder corners, shadow, flex, center items, padding between child elements  -->
 <div class="p-6 max-w-xs mx-auto bg-white rounded-xl shadow-lg flex items-center space-x-4 " >
+    
     <!-- catImage element -->
     <img id="catImage" alt="Wait to get a cat"></img>
 
 </div>
 
+<!-- Hidden Classify Div -->
 <div id="hidden" style="display: none;" class="p-6 max-w-xs mx-auto bg-white rounded-xl shadow-lg flex items-center space-x-4 " >
+    
+    <!-- Cat Label -->
     <span class="text-xl font-medium text-black" id="catLabel"></span>
+
 </div>
 
 
