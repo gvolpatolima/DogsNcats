@@ -81,7 +81,7 @@
     <!-- Classify button -->
     <div class="text-xl font-medium text-black">
 
-        <button id="show-div" >AI classify</button>
+        <button id="show-div-cat" >AI classify</button>
 
     </div>
 
@@ -96,10 +96,11 @@
 
 </div>
 
+
 <!-- Hidden Classify Div -->
-<div id="hidden" style="display: none;" class="p-6 max-w-xs mx-auto bg-white rounded-xl shadow-lg flex items-center space-x-4 " >
-    
-    <!-- Cat Label -->
+<div id="hidden-cat" style="display: none;" class="p-6 max-w-xs mx-auto bg-white rounded-xl shadow-lg flex items-center space-x-4 " >
+
+    <!-- cat Label -->
     <span class="text-xl font-medium text-black" id="catLabel"></span>
 
 </div>
@@ -113,6 +114,15 @@
     hiddenDiv.style.display = "block";
 });
 
+</script>
+
+<script>
+    const showcatDivButton = document.getElementById("show-div-cat");
+    const hiddencatDiv = document.getElementById("hidden-cat");
+
+    showcatDivButton.addEventListener("click", function() {
+        hiddencatDiv.style.display = "block";
+});
 
 </script>
 
@@ -138,6 +148,7 @@ function fetchCatImage() {
         var label = data['label'];
         $('#catImage').attr('src', url);
         $('#catLabel').text('The AI has classified this as a ' + label);
+        hiddencatDiv.style.display = "none";
     })
     .fail(function() {
         console.log('Failed to fetch cat image.');
