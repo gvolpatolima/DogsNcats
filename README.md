@@ -26,6 +26,7 @@ Features
     Clone the repository to your local machine.
     Install the requirements.
     Run git-lfs pull
+    Add django SECRET_KEY (generate at https://djecrety.ir/)
     Run python manage.py runserver.
     Click on the "Fetch new dogs, cats" button to display a random image of a dog or a cat.
     Click on the "AI classify" button to use the AI-powered image classification feature to determine whether the displayed image is a dog or a cat.
@@ -33,9 +34,9 @@ Features
 
 ## Credits
 
-    Images of dogs and cats used in this website are obtained from Kaggle (sample images used for demonstration purposes only).
-    AI-powered image classification is done using TensorFlow.js, a JavaScript library for machine learning, developed by Google.
-    The website design and layout are inspired by Tailwind UI.
+    Images of dogs and cats used in this website are obtained from Free Code Camp (sample images used for demonstration and completion of the course only).
+    AI-powered image classification is done using TensorFlow, a Python library for machine learning, developed by Google.
+    The website design and layout were created using Tailwind CSS
 
 ## License
 
