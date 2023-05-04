@@ -38,6 +38,11 @@ Features
     Click on the "AI classify" button to use the AI-powered image classification feature to determine whether the displayed image is a dog or a cat.
     Repeat steps 5-6 to load and classify different images.
 
+
+## Contributing
+
+If you would like to contribute to this project, feel free to fork the repository, make your changes, and submit a pull request. Contributions are welcome and appreciated!
+
 ## Credits
 
     Images of dogs and cats used in this website are obtained from Free Code Camp (sample images used for demonstration and completion of the course only).
