@@ -9,6 +9,12 @@ Features
     AI-powered image classification to determine whether the displayed image is a dog or a cat
     Buttons to change the displayed image
 
+## Features
+
+- User-friendly web interface for interacting with the AI
+- Fetch images from the catAPII and dogAPI
+- Integration with a Convolutional Neural Network for image classification
+
 ## Technologies Used
 
     HTML
