@@ -1,7 +1,5 @@
 # Website for Dog and Cat Image Classification
 
-(Incomplete)
-
 This website allows users to view pictures of dogs and cats, and use an AI-powered image classification feature to determine whether the displayed image is a dog or a cat. Users can also change the displayed image by clicking on buttons provided on the website.
 Features
 
@@ -51,4 +49,10 @@ If you would like to contribute to this project, feel free to fork the repositor
 
 ## License
 
-This website is open-source and available under the [MIT License](LICENSE). You are free to use, modify, and distribute this code for any purpose. 
+This website is open-source and available under the [MIT License](LICENSE). You are free to use, modify, and distribute this code for any purpose.
+
+## Acknowledgements
+
+- This project was made as an expansion of the Fcc_cat_dog project
+- Special thanks to the Django community for providing a powerful and flexible web framework for Python developers.
+- Thanks to the team at Free Code Camp for their wonderful job at teaching Machine Learning
