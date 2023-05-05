@@ -106,6 +106,15 @@
 </div>
 
 
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <label for="image">Upload an image:</label>
+    <input type="file" name="image" id="image">
+    <button type="submit">Submit</button>
+  </form>
+
+
+
 <script>
     const showDivButton = document.getElementById("show-div");
     const hiddenDiv = document.getElementById("hidden");
