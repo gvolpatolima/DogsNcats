@@ -119,6 +119,41 @@ def get_cat(request):
         return JsonResponse({'error': 'Failed to fetch cat image.'})
 
 
+from django.shortcuts import render
+from django.http import HttpResponse
+from .forms import ImageForm
+from .utils import classify_image
+
+def upload_image(request):
+    """
+    Renders a form for users to submit an image file for classification.
+    """
+    if request.method == 'POST':
+        # Create an ImageForm instance with the POST data and uploaded files
+        form = ImageForm(request.POST, request.FILES)
+
+        # Check if the form is valid
+        if form.is_valid():
+            # Get the uploaded image file from the form data
+            uploaded_file = request.FILES['image']
+            # Read the contents of the file
+            image_content = uploaded_file.read()
+
+            # Preprocess the image data
+            image_array = preprocess_image(image_content)
+
+            # Classify the image
+            label = classify_image(image_array)
+
+            # Return the classification result as a JSON response
+            return JsonResponse({'label': label})
+
+    # Render the form template if the request method is GET
+    else:
+        form = ImageForm()
+
+    return render(request, 'upload_form.html', {'form': form})
+
 
 def index(request):
     return render(request, 'pages/index.html')
