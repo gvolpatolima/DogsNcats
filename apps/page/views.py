@@ -12,9 +12,6 @@ import numpy as np
 IMG_HEIGHT = 150
 IMG_WIDTH = 150
 
-
-
-
     
 def get_dog(request):
     """
@@ -119,41 +116,50 @@ def get_cat(request):
         return JsonResponse({'error': 'Failed to fetch cat image.'})
 
 
-from django.shortcuts import render
-from django.http import HttpResponse
-from .forms import ImageForm
-from .utils import classify_image
 
 def upload_image(request):
-    """
-    Renders a form for users to submit an image file for classification.
-    """
-    if request.method == 'POST':
-        # Create an ImageForm instance with the POST data and uploaded files
-        form = ImageForm(request.POST, request.FILES)
+    if request.method == 'POST' and request.FILES['image']:
+        image = request.FILES['image']
+        # process the uploaded image here
 
-        # Check if the form is valid
-        if form.is_valid():
-            # Get the uploaded image file from the form data
-            uploaded_file = request.FILES['image']
-            # Read the contents of the file
-            image_content = uploaded_file.read()
+        # create a response object
+        response_data = {'status': 'success', 'message': 'Image uploaded successfully'}
+        # Extract the JSON data from the response
+        data = response.json()
+        # Extract the 'url' key from the JSON data
+        message = data['message']
 
-            # Preprocess the image data
-            image_array = preprocess_image(image_content)
+        # Load the model
+        model = tf.keras.models.load_model('cat_dog_classifier.h5')
 
-            # Classify the image
-            label = classify_image(image_array)
+        # Request the image from the URL and get the content
+        response = requests.get(message)
+        image_content = response.content
 
-            # Return the classification result as a JSON response
-            return JsonResponse({'label': label})
+        # Decode the image data and create a PIL image object
+        image = Image.open(BytesIO(image_content))
+        # Resize the image to the expected size
+        image = image.resize((IMG_WIDTH, IMG_HEIGHT))
+        # Convert the PIL image to a numpy array
+        image_array = np.array(image)
+        # Normalize the image data
+        image_array = image_array / 255.0
+        # Return the 'message' and the predicted label as a JSON response
+        # Add an extra dimension to the image array to match the input shape of the model
+        image_array = np.expand_dims(image_array, axis=0)
 
-    # Render the form template if the request method is GET
+        # Use the model to predict the class of the image
+        prediction = model.predict(image_array)
+
+        if prediction >= 0.5:
+            label = 'dog'
+        else:
+            label = 'cat'
+
+        return JsonResponse({'message': message, 'label': label})
     else:
-        form = ImageForm()
-
-    return render(request, 'upload_form.html', {'form': form})
-
+        response_data = {'status': 'error', 'message': 'Error uploading image'}
+        return JsonResponse(response_data)   
 
 def index(request):
     return render(request, 'pages/index.html')
