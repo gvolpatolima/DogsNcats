@@ -136,7 +136,7 @@
     <div class="text-xl font-medium text-black">
 
 
-        <button id="" >AI classify</button>
+        <button id="show-div-superposition" >AI classify</button>
 
     </div>
 
@@ -144,7 +144,7 @@
 
 
 <!-- Hidden Classify Div -->
-<div id="hidden-cat" style="display: none;" class="p-6 max-w-xs mx-auto bg-white rounded-xl shadow-lg flex items-center space-x-4 " >
+<div id="hidden-superposition" style="display: none;" class="p-6 max-w-xs mx-auto bg-white rounded-xl shadow-lg flex items-center space-x-4 " >
 
     <!-- superposition Label -->
     <span class="text-xl font-medium text-black" id="superpositionLabel"></span>
@@ -173,11 +173,11 @@
 </script>
 
 <script>
-    const showcatDivButton = document.getElementById("show-div-cat");
-    const hiddencatDiv = document.getElementById("hidden-cat");
+    const showSuperpositionLabel = document.getElementById("show-div-superposition");
+    const hiddenSuperpositionDiv = document.getElementById("hidden-superposition");
 
-    showcatDivButton.addEventListener("click", function() {
-        hiddencatDiv.style.display = "block";
+    showSuperpositionLabel.addEventListener("click", function() {
+        hiddenSuperpositionDiv.style.display = "block";
 });
 
 </script>
