@@ -105,14 +105,8 @@
 
 </div>
 
-<!-- Upload image -->
-<div class="p-6 max-w-xs mx-auto bg-white rounded-xl shadow-lg flex items-center space-x-4 " >
-    <form method="POST" enctype="multipart/form-data">
-        {% csrf_token %}
-        <label for="image">Upload an image:</label>
-        <input type="file" name="image" id="image">
-    </form>
-</div>
+
+
 
 
 <!-- padding, max width, center, bg, rounder corners, shadow, flex, center items, padding between child elements  -->
@@ -129,7 +123,7 @@
     <!-- fetch superposition button -->
     <div class="text-xl font-medium text-black">
 
-        <button type="submit" id="fetchUploadedImage" onclick="fetchUploadedImage()" >Submit</button>
+        <button type="submit" id="fetchUploadedImage" >Submit</button>
 
     </div> 
 
@@ -142,13 +136,42 @@
 
 </div>
 
-<!-- SuperpositionImage element -->
-<div class="p-6 max-w-xs mx-auto bg-white rounded-xl shadow-lg flex items-center space-x-4 " >
+<!-- SuperpositionImage element and Upload-->
+<div class="p-6 max-w-xs mx-auto bg-white rounded-xl shadow-lg flex items-center space-x-4">
 
-    <img id="superpositionImage" src="" alt="Submit an image and press Submit"></img>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input type="file" name="image">
+        <button type="submit">Submit</button>
+    </form>
 
 </div>
 
+<div class="p-6 max-w-xs mx-auto bg-white rounded-xl shadow-lg flex items-center space-x-4">
+
+    <img id="superpositionImage" src="" alt="Submit an image and press Submit">
+
+</div>
+
+<!-- Display image -->
+<script>
+const form = document.querySelector('form');
+const imgElement = document.getElementById('superpositionImage');
+
+form.addEventListener('submit', (event) => {
+  event.preventDefault(); // prevent the form from submitting and refreshing the page
+  
+  const formData = new FormData(form); // create a FormData object from the form
+  const file = formData.get('image'); // get the uploaded file from the FormData object
+
+  const reader = new FileReader(); // create a FileReader object to read the file
+  reader.readAsDataURL(file); // read the file as a data URL
+
+  reader.onload = () => {
+    imgElement.src = reader.result; // set the src attribute of the img element with the data URL
+  };
+});
+</script>
 
 <!-- Hidden Classify Div -->
 <div id="hidden-superposition" style="display: none;" class="p-6 max-w-xs mx-auto bg-white rounded-xl shadow-lg flex items-center space-x-4 " >
@@ -218,13 +241,11 @@ function fetchCatImage() {
     });
 }
 
-function fetchUploadedImage() {
+function classifyUploadedImage() {
     $.get('/upload_image/', function(data) {
-        var url = data['url'];
         var label = data['label'];
-        $('#superpositionImage').attr('src', url);
         $('#superpositionLabel').text('The AI has classified this as a ' + label);
-        hiddencatDiv.style.display = "none";
+        hiddenSuperpositionDiv.style.display = "none";
     })
     .fail(function() {
         console.log('Failed to fetch image.');
