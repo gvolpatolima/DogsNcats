@@ -67,7 +67,7 @@
     <!-- Icon -->
     <div class="shrink-0">
 
-        <img class="h-12 w-12" src="https://img.icons8.com/fluency/256/kitty.png" alt="dog icon">
+        <img class="h-12 w-12" src="https://img.icons8.com/?size=512&id=tgLepcPbp6mP&format=png" alt="dog icon">
 
     </div>
 
@@ -86,7 +86,7 @@
     </div>
 
 </div>
-       
+    
 
 <!-- padding, max width, center, bg, rounder corners, shadow, flex, center items, padding between child elements  -->
 <div class="p-6 max-w-xs mx-auto bg-white rounded-xl shadow-lg flex items-center space-x-4 " >
@@ -105,14 +105,50 @@
 
 </div>
 
+<!-- Upload image -->
+<div class="p-6 max-w-xs mx-auto bg-white rounded-xl shadow-lg flex items-center space-x-4 " >
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <label for="image">Upload an image:</label>
+        <input type="file" name="image" id="image">
+    </form>
+</div>
 
-<form method="POST" enctype="multipart/form-data">
-    {% csrf_token %}
-    <label for="image">Upload an image:</label>
-    <input type="file" name="image" id="image">
-    <button type="submit">Submit</button>
-  </form>
+<!-- padding, max width, center, bg, rounder corners, shadow, flex, center items, padding between child elements  -->
+<div class="p-6 max-w-sm mx-auto bg-white rounded-xl shadow-lg flex items-center space-x-4">
 
+    <!-- Icon -->
+    <div class="shrink-0">
+
+        <img class="h-12 w-12" src="https://img.icons8.com/?size=512&id=111409&format=png" alt="dog icon">
+
+    </div>
+
+
+    <!-- Classify button -->
+    <div class="text-xl font-medium text-black">
+
+    <button type="submit" id="fetchUploadedImage" onclick="fetchUploadedImage()" >Submit</button>
+
+    </div> 
+    
+    <div class="text-xl font-medium text-black">
+
+
+        <button id="" >AI classify</button>
+
+    </div>
+
+</div>
+
+
+<!-- Hidden Classify Div -->
+<div id="hidden-cat" style="display: none;" class="p-6 max-w-xs mx-auto bg-white rounded-xl shadow-lg flex items-center space-x-4 " >
+
+    <!-- superposition Label -->
+    <span class="text-xl font-medium text-black" id="superpositionLabel"></span>
+
+</div>
 
 
 <script>
@@ -161,6 +197,19 @@ function fetchCatImage() {
     })
     .fail(function() {
         console.log('Failed to fetch cat image.');
+    });
+}
+
+function fetchUploadedImage() {
+    $.get('/upload_image/', function(data) {
+        var url = data['url'];
+        var label = data['label'];
+        $('#superpositionImage').attr('src', url);
+        $('#superpositionLabel').text('The AI has classified this as a ' + label);
+        hiddencatDiv.style.display = "none";
+    })
+    .fail(function() {
+        console.log('Failed to fetch image.');
     });
 }
 
