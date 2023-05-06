@@ -151,13 +151,23 @@
 
 </div>
 
+<!-- Labels -->
+<script>
+    const showDogDiv = document.getElementById("show-div");
+    const hiddennDogDiv = document.getElementById("hidden");
+
+    showDogDiv.addEventListener("click", function() {
+    hiddennDogDiv.style.display = "block";
+});
+
+</script>
 
 <script>
-    const showDivButton = document.getElementById("show-div");
-    const hiddenDiv = document.getElementById("hidden");
+    const showcatDivButton = document.getElementById("show-div-cat");
+    const hiddencatDiv = document.getElementById("hidden-cat");
 
-    showDivButton.addEventListener("click", function() {
-    hiddenDiv.style.display = "block";
+    showcatDivButton.addEventListener("click", function() {
+        hiddencatDiv.style.display = "block";
 });
 
 </script>
@@ -181,7 +191,7 @@ function fetchDogImage() {
         var label = data['label'];
         $('#dogImage').attr('src', message);
         $('#dogLabel').text('The AI has classified this as a ' + label);
-        hiddenDiv.style.display = "none";
+        hiddennDogDiv.style.display = "none";
     })
     .fail(function() {
         console.log('Failed to fetch dog image.');
