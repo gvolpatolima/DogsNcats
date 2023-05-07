@@ -120,17 +120,10 @@
     </div>
 
 
-    <!-- fetch superposition button -->
-    <div class="text-xl font-medium text-black">
-
-        <button type="submit" id="fetchUploadedImage" >Submit</button>
-
-    </div> 
-
      <!-- Classify button -->
     <div class="text-xl font-medium text-black">
 
-        <button id="show-div-superposition" >AI classify</button>
+        <button id="show-div-superposition" onclick="classifyUploadedImage()">AI classify</button>
 
     </div>
 
@@ -139,10 +132,11 @@
 <!-- SuperpositionImage element and Upload-->
 <div class="p-6 max-w-xs mx-auto bg-white rounded-xl shadow-lg flex items-center space-x-4">
 
-    <form method="POST" enctype="multipart/form-data">
+    <form method="POST" action="{% url 'page:upload_image' %}" enctype="multipart/form-data">
         {% csrf_token %}
+        {{ form.image }}
         <input type="file" name="image">
-        <button type="submit">Submit</button>
+        <button type="submit" onclick="classifyUploadedImage()">Submit</button>
     </form>
 
 </div>
@@ -155,22 +149,22 @@
 
 <!-- Display image -->
 <script>
-const form = document.querySelector('form');
-const imgElement = document.getElementById('superpositionImage');
+    const form = document.querySelector('form');
+    const imgElement = document.getElementById('superpositionImage');
 
-form.addEventListener('submit', (event) => {
-  event.preventDefault(); // prevent the form from submitting and refreshing the page
-  
-  const formData = new FormData(form); // create a FormData object from the form
-  const file = formData.get('image'); // get the uploaded file from the FormData object
+    form.addEventListener('submit', (event) => {
+    event.preventDefault(); // prevent the form from submitting and refreshing the page
+    
+    const formData = new FormData(form); // create a FormData object from the form
+    const file = formData.get('image'); // get the uploaded file from the FormData object
 
-  const reader = new FileReader(); // create a FileReader object to read the file
-  reader.readAsDataURL(file); // read the file as a data URL
+    const reader = new FileReader(); // create a FileReader object to read the file
+    reader.readAsDataURL(file); // read the file as a data URL
 
-  reader.onload = () => {
-    imgElement.src = reader.result; // set the src attribute of the img element with the data URL
-  };
-});
+    reader.onload = () => {
+        imgElement.src = reader.result; // set the src attribute of the img element with the data URL
+    };
+    });
 </script>
 
 <!-- Hidden Classify Div -->
@@ -242,15 +236,61 @@ function fetchCatImage() {
 }
 
 function classifyUploadedImage() {
-    $.get('/upload_image/', function(data) {
-        var label = data['label'];
-        $('#superpositionLabel').text('The AI has classified this as a ' + label);
-        hiddenSuperpositionDiv.style.display = "none";
-    })
-    .fail(function() {
-        console.log('Failed to fetch image.');
+    // Get the CSRF token from the cookie
+    var csrftoken = getCookie('csrftoken');
+
+    // Get the image file from the form
+    var imageFile = $('input[name="image"]').prop('files')[0];
+
+    // Create a FormData object to send the file to the server
+    var formData = new FormData();
+    formData.append('image', imageFile);
+    formData.append('csrfmiddlewaretoken', csrftoken);
+
+    // Send a POST request to the server
+    $.ajax({
+        url: '/upload_image/',
+        type: 'POST',
+        data: formData,
+        contentType: false,
+        processData: false,
+        success: function(data) {
+            var label = data['label'];
+            $('#superpositionLabel').text('The AI has classified this as a ' + label);
+        },
+        error: function() {
+            console.log('Failed to fetch image.');
+        }
     });
 }
+
+// Function to get the CSRF token from the cookie
+function getCookie(name) {
+    var cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        var cookies = document.cookie.split(';');
+        for (var i = 0; i < cookies.length; i++) {
+            var cookie = cookies[i].trim();
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+
+
+
+// function classifyUploadedImage() {
+//     $.get('/upload_image/', function(data) {
+//         var label = data['label'];
+//         $('#superpositionLabel').text('The AI has classified this as a ' + label);
+//     })
+//     .fail(function() {
+//         console.log('Failed to fetch image.');
+//     });
+// }
 
 
     </script>
