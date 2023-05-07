@@ -123,7 +123,6 @@ def get_cat(request):
 
 def upload_image(request):
     if request.method == 'POST':
-        print('post')
         # Load the model
         model = tf.keras.models.load_model('cat_dog_classifier.h5')
 

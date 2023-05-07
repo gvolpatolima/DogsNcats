@@ -106,9 +106,6 @@
 </div>
 
 
-
-
-
 <!-- padding, max width, center, bg, rounder corners, shadow, flex, center items, padding between child elements  -->
 <div class="p-6 max-w-sm mx-auto bg-white rounded-xl shadow-lg flex items-center space-x-4">
 
@@ -123,24 +120,30 @@
      <!-- Classify button -->
     <div class="text-xl font-medium text-black">
 
-        <button id="show-div-superposition" onclick="classifyUploadedImage()">AI classify</button>
+        <button type="submit" id="show-div-superposition" onclick="classifyUploadedImage()">AI classify</button>
 
     </div>
 
 </div>
 
-<!-- SuperpositionImage element and Upload-->
+<!-- Upload Image -->
 <div class="p-6 max-w-xs mx-auto bg-white rounded-xl shadow-lg flex items-center space-x-4">
 
     <form method="POST" action="{% url 'page:upload_image' %}" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form.image }}
-        <input type="file" name="image">
-        <button type="submit" onclick="classifyUploadedImage()">Submit</button>
+        <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="file_input">Upload file</label>
+        <input type="file" name="image" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-slate-200 " id="file_input" >
+
+        <div class="text-xl font-medium text-black">
+        <button type="submit" id="hide-superposition">Submit</button>
+        </div>
     </form>
 
 </div>
 
+
+<!--  SuperpositionImage element  -->
 <div class="p-6 max-w-xs mx-auto bg-white rounded-xl shadow-lg flex items-center space-x-4">
 
     <img id="superpositionImage" src="" alt="Submit an image and press Submit">
@@ -197,8 +200,16 @@
 </script>
 
 <script>
-    const showSuperpositionLabel = document.getElementById("show-div-superposition");
+    const hideSuperpositionLabel = document.getElementById("hide-superposition");
     const hiddenSuperpositionDiv = document.getElementById("hidden-superposition");
+
+    hideSuperpositionLabel.addEventListener("click", function() {
+        hiddenSuperpositionDiv.style.display = "none";
+});
+</script>
+
+<script>
+    const showSuperpositionLabel = document.getElementById("show-div-superposition");
 
     showSuperpositionLabel.addEventListener("click", function() {
         hiddenSuperpositionDiv.style.display = "block";
@@ -279,19 +290,6 @@ function getCookie(name) {
     }
     return cookieValue;
 }
-
-
-
-// function classifyUploadedImage() {
-//     $.get('/upload_image/', function(data) {
-//         var label = data['label'];
-//         $('#superpositionLabel').text('The AI has classified this as a ' + label);
-//     })
-//     .fail(function() {
-//         console.log('Failed to fetch image.');
-//     });
-// }
-
 
     </script>
 </body>
