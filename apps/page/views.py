@@ -95,7 +95,7 @@ def get_cat(request):
             # Resize the image to the expected size
             image = image.resize((IMG_WIDTH, IMG_HEIGHT))
             # Convert the PIL image to a numpy array
-            image_array = np.array(image)
+            image_array = np.array(image)[..., :3]
             # Normalize the image data
             image_array = image_array / 255.0
             # Return the 'url' and the predicted label as a JSON response
