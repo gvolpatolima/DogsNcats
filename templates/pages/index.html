@@ -66,8 +66,7 @@
 <!-- padding, max width, center, bg, rounder corners, shadow, flex, center items, padding between child elements  -->
 <div class="p-6 max-w-sm mx-auto bg-white rounded-xl shadow-lg items-center space-x-4 " >
     
-    <!-- catImage element -->
-    <img id="catImage" alt="Wait to get a cat"></img>
+
 
     <!-- padding, max width, center, bg, rounder corners, shadow, flex, center items, padding between child elements  -->
     <div class="p-6 max-w-sm mx-auto bg-white rounded-xl shadow-lg flex items-center space-x-4">
@@ -96,6 +95,29 @@
 </div>
 
 </div>
+
+
+
+<div class="p-20 mx-auto max-w-sm space-x-4 bg-slate-50 rounded-xl">
+    <div class="bg-white rounded-lg shadow-2xl ">
+        <img class="rounded-t-lg" id="catImage" class="md:w-1/3 rounded-t-lg md:rounded-l-lg md:rounded-t-none" />
+      <div class="p-6">
+        <!-- Icon -->
+        <a class="shrink-0">
+
+            <img class="h-12 w-12" src="https://img.icons8.com/?size=512&id=tgLepcPbp6mP&format=png" alt="dog icon">
+
+        </a>
+        <!-- Fetch button -->
+        <div class="text-xl font-medium text-black">
+
+            <button id="fetchCatBtn" onclick="fetchCatImage()">Fetch new cats</button>
+
+        </div>
+      </div>
+  
+    </div>
+  </div>
 
 
 <!-- Hidden Classify Div -->
@@ -131,6 +153,7 @@
     </form>
 
 </div>
+
 
 
 <!--  SuperpositionImage element  -->
