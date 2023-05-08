@@ -20,6 +20,8 @@
 </head>
 <body onload="fetchDogImage(), fetchCatImage()" class="bg-cover bg-center" style="background-image: url('https://images.pexels.com/photos/952670/pexels-photo-952670.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1')">
 
+
+
 <!-- padding, max width, center, bg, rounder corners, shadow, flex, center items, padding between child elements  -->
 <div class="p-6 max-w-sm mx-auto bg-white rounded-xl shadow-lg flex items-center space-x-4">
 
@@ -61,39 +63,37 @@
 
 </div>
 
-
 <!-- padding, max width, center, bg, rounder corners, shadow, flex, center items, padding between child elements  -->
-<div class="p-6 max-w-sm mx-auto bg-white rounded-xl shadow-lg flex items-center space-x-4">
+<div class="p-6 max-w-sm mx-auto bg-white rounded-xl shadow-lg items-center space-x-4 " >
+    
+    <!-- catImage element -->
+    <img id="catImage" alt="Wait to get a cat"></img>
 
-    <!-- Icon -->
-    <div class="shrink-0">
+    <!-- padding, max width, center, bg, rounder corners, shadow, flex, center items, padding between child elements  -->
+    <div class="p-6 max-w-sm mx-auto bg-white rounded-xl shadow-lg flex items-center space-x-4">
 
-        <img class="h-12 w-12" src="https://img.icons8.com/?size=512&id=tgLepcPbp6mP&format=png" alt="dog icon">
+        <!-- Icon -->
+        <div class="shrink-0">
 
-    </div>
+            <img class="h-12 w-12" src="https://img.icons8.com/?size=512&id=tgLepcPbp6mP&format=png" alt="dog icon">
 
-    <!-- Fetch button -->
-    <div class="text-xl font-medium text-black">
+        </div>
 
-        <button id="fetchCatBtn" onclick="fetchCatImage()">Fetch new cats</button>
+        <!-- Fetch button -->
+        <div class="text-xl font-medium text-black">
 
-    </div>
+            <button id="fetchCatBtn" onclick="fetchCatImage()">Fetch new cats</button>
 
-    <!-- Classify button -->
-    <div class="text-xl font-medium text-black">
+        </div>
 
-        <button id="show-div-cat" >AI classify</button>
+        <!-- Classify button -->
+        <div class="text-xl font-medium text-black">
+
+            <button id="show-div-cat" >AI classify</button>
 
     </div>
 
 </div>
-    
-
-<!-- padding, max width, center, bg, rounder corners, shadow, flex, center items, padding between child elements  -->
-<div class="p-6 max-w-xs mx-auto bg-white rounded-xl shadow-lg items-center space-x-4 " >
-    
-    <!-- catImage element -->
-    <img id="catImage" alt="Wait to get a cat"></img>
 
 </div>
 
@@ -103,27 +103,6 @@
 
     <!-- cat Label -->
     <span class="text-xl font-medium text-black" id="catLabel"></span>
-
-</div>
-
-
-<!-- padding, max width, center, bg, rounder corners, shadow, flex, center items, padding between child elements  -->
-<div class="p-6 max-w-sm mx-auto bg-white rounded-xl shadow-lg flex items-center space-x-4">
-
-    <!-- Icon -->
-    <div class="shrink-0">
-
-        <img class="h-12 w-12" src="https://img.icons8.com/?size=512&id=111409&format=png" alt="dog icon">
-
-    </div>
-
-
-     <!-- Classify button -->
-    <div class="text-xl font-medium text-black">
-
-        <button type="submit" id="show-div-superposition" onclick="classifyUploadedImage()">AI classify</button>
-
-    </div>
 
 </div>
 
@@ -158,6 +137,26 @@
 <div  class="max-w-sm mx-auto bg-white border border-gray-200 rounded-xl shadow ">
     
     <img id="superpositionImage" class="rounded-t-lg max-w-sm mx-auto" src="" alt="Upload an image and press Submit">
+
+    <!-- padding, max width, center, bg, rounder corners, shadow, flex, center items, padding between child elements  -->
+    <div class="p-6 max-w-sm mx-auto bg-white rounded-xl shadow-lg flex items-center space-x-4">
+
+        <!-- Icon -->
+        <div class="shrink-0">
+
+            <img class="h-12 w-12" src="https://img.icons8.com/?size=512&id=111409&format=png" alt="dog icon">
+
+        </div>
+
+
+        <!-- Classify button -->
+        <div class="text-xl font-medium text-black">
+
+            <button type="submit" id="show-div-superposition" onclick="classifyUploadedImage()">AI classify</button>
+
+        </div>
+
+    </div>
 
 </div>
 
