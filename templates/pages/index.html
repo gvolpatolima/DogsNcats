@@ -20,153 +20,163 @@
 </head>
 <body onload="fetchDogImage(), fetchCatImage()" class="bg-cover bg-center" style="background-image: url('https://images.pexels.com/photos/952670/pexels-photo-952670.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1')">
 
-<div class="p-20 mx-auto max-w-sm space-x-4 bg-slate-50 rounded-xl">
+<div class="grid grid-cols-3 grid-rows-1">
 
-    <div class="bg-white rounded-lg shadow-2xl ">
+    <!-- Dog element  -->
+    <div class=" p-20 mx-auto max-w-sm space-x-4 bg-slate-50 rounded-xl">
 
-        <img class="rounded-t-lg" id="dogImage"></img>
+        <div class="bg-white rounded-lg shadow-2xl ">
+
+            <img class="rounded-t-lg" id="dogImage"></img>
+
+            <div class="p-6">
+
+                <!-- Icon -->
+                <div class="shrink-0">
+
+                    <img class="h-12 w-12" src="https://img.icons8.com/bubbles/256/dog.png" alt="dog icon">
+
+                </div>
+
+                <!-- Fetch button -->
+                <div class="text-xl font-medium text-black">
+
+                    <button id="fetchDogBtn" onclick="fetchDogImage()" class="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-lg px-5 py-2.5 text-center mr-2 mb-2" >Fetch new dogs</button>
+
+                </div>
+
+                <!-- Classify button -->
+                <div class="text-xl font-medium text-black">
+
+                    <button id="show-div" class="text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-lg px-5 py-2.5 text-center mr-2 mb-2">AI classify</button>
+
+                </div>
+
+            </div>
+        
+        </div>
+        
+    </div>
+
+
+    <!-- Cat Element -->
+    <div class="p-20 mx-auto max-w-sm space-x-4 bg-slate-50 rounded-xl">
+        
+        <div class="bg-white rounded-lg shadow-2xl ">
+
+            <img class="rounded-t-lg" id="catImage"/>
 
         <div class="p-6">
 
             <!-- Icon -->
-            <div class="shrink-0">
+            <a class="shrink-0">
 
-                <img class="h-12 w-12" src="https://img.icons8.com/bubbles/256/dog.png" alt="dog icon">
+                <img class="h-12 w-12" src="https://img.icons8.com/?size=512&id=tgLepcPbp6mP&format=png" alt="dog icon">
 
-            </div>
+            </a>
 
             <!-- Fetch button -->
             <div class="text-xl font-medium text-black">
 
-                <button id="fetchDogBtn" onclick="fetchDogImage()" class="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-lg px-5 py-2.5 text-center mr-2 mb-2" >Fetch new dogs</button>
+                <button id="fetchCatBtn" onclick="fetchCatImage()" class="text-white bg-gradient-to-r from-pink-400 via-pink-500 to-pink-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-pink-300 dark:focus:ring-pink-800 font-medium rounded-lg text-lg px-5 py-2.5 text-center mr-2 mb-2">Fetch new cats</button>
 
             </div>
 
             <!-- Classify button -->
             <div class="text-xl font-medium text-black">
 
-                <button id="show-div" class="text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-lg px-5 py-2.5 text-center mr-2 mb-2">AI classify</button>
+                <button id="show-div-cat" class="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-lg px-5 py-2.5 text-center mr-2 mb-2" >AI classify</button>
 
             </div>
 
         </div>
     
+        </div>
+
     </div>
-    
+
+
+
+
+    <!-- Upload Image -->
+    <div class="p-6 max-w-xs mx-auto bg-white rounded-xl shadow-lg flex items-center ">
+
+        <form method="POST" action="{% url 'page:upload_image' %}" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.image }}
+            <div id="wrapper" class="space-y-5">
+
+                <!-- Icon -->
+                <div class="shrink-0">
+
+                    <img class="h-12 w-12" src="https://img.icons8.com/?size=512&id=111409&format=png" alt="dog icon">
+
+                </div>
+                
+                <div>
+
+                    <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="file_input">Upload file</label>
+
+                    <input type="file" name="image" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-slate-50 " id="file_input" >
+
+                </div>
+
+                <div>
+
+                    <button type="submit" id="hide-superposition" class="text-white bg-gradient-to-br from-pink-500 to-orange-400 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800 font-medium rounded-lg text-xl px-5 py-2.5 text-center mr-2 mb-2 ">Submit</button>
+
+                </div>
+
+                <!-- Classify button -->
+                <div class="text-xl font-medium text-black">
+
+                    <button type="submit" id="show-div-superposition" onclick="classifyUploadedImage()" class="text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 font-medium rounded-lg text-lg px-5 py-2.5 text-center mr-2 mb-2">AI classify</button>
+
+                </div>
+
+            </div>
+        </form>
+
+    </div>
+
+    <!-- Hidden Classify Div -->
+    <div id="hidden" style="display: none;" class=" max-h-24 p-6 max-w-xs mx-auto bg-white rounded-xl shadow-lg flex items-center space-x-4 " >
+
+        <!-- Dog Label -->
+        <span class="text-xl font-medium text-black" id="dogLabel"></span>
+
+    </div>
+
+    <!-- Hidden Classify Div -->
+    <div id="hidden-cat" style="display: none;" class=" max-h-24 p-6 max-w-xs mx-auto bg-white rounded-xl shadow-lg flex items-center space-x-4 " >
+
+        <!-- cat Label -->
+        <span class="text-xl font-medium text-black" id="catLabel"></span>
+
+    </div>
+
+    <!--  SuperpositionImage element  -->
+    <div  class="max-w-sm mx-auto bg-white border border-gray-200 rounded-xl shadow ">
+        
+        <img id="superpositionImage" class="rounded-t-lg max-w-sm mx-auto" src="" alt="Upload an image and press Submit">
+
+    </div>
 </div>
+
+
+
 
 
 
 <!-- Hidden Classify Div -->
-<div id="hidden" style="display: none;" class="p-6 max-w-xs mx-auto bg-white rounded-xl shadow-lg flex items-center space-x-4 " >
+<div id="hidden-superposition" style="display: none;" class="p-6 max-w-xs mx-auto bg-white rounded-xl shadow-lg flex items-center space-x-4 " >
 
-    <!-- Dog Label -->
-    <span class="text-xl font-medium text-black" id="dogLabel"></span>
-
-</div>
-
-
-</div>
-
-<!-- Cat Element -->
-<div class="p-20 mx-auto max-w-sm space-x-4 bg-slate-50 rounded-xl">
-    
-    <div class="bg-white rounded-lg shadow-2xl ">
-
-        <img class="rounded-t-lg" id="catImage"/>
-
-      <div class="p-6">
-
-        <!-- Icon -->
-        <a class="shrink-0">
-
-            <img class="h-12 w-12" src="https://img.icons8.com/?size=512&id=tgLepcPbp6mP&format=png" alt="dog icon">
-
-        </a>
-
-        <!-- Fetch button -->
-        <div class="text-xl font-medium text-black">
-
-            <button id="fetchCatBtn" onclick="fetchCatImage()" class="text-white bg-gradient-to-r from-pink-400 via-pink-500 to-pink-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-pink-300 dark:focus:ring-pink-800 font-medium rounded-lg text-lg px-5 py-2.5 text-center mr-2 mb-2">Fetch new cats</button>
-
-        </div>
-
-        <!-- Classify button -->
-        <div class="text-xl font-medium text-black">
-
-            <button id="show-div-cat" class="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-lg px-5 py-2.5 text-center mr-2 mb-2" >AI classify</button>
-
-        </div>
-
-      </div>
-  
-    </div>
-
-  </div>
-
-
-<!-- Hidden Classify Div -->
-<div id="hidden-cat" style="display: none;" class="p-6 max-w-xs mx-auto bg-white rounded-xl shadow-lg flex items-center space-x-4 " >
-
-    <!-- cat Label -->
-    <span class="text-xl font-medium text-black" id="catLabel"></span>
-
-</div>
-
-<!-- Upload Image -->
-<div class="p-6 max-w-xs mx-auto bg-white rounded-xl shadow-lg flex items-center ">
-
-    <form method="POST" action="{% url 'page:upload_image' %}" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ form.image }}
-        <div id="wrapper" class="space-y-5">
-
-            <div>
-                <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="file_input">Upload file</label>
-
-                <input type="file" name="image" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-slate-50 " id="file_input" >
-
-            </div>
-
-            <div>
-
-                <button type="submit" id="hide-superposition" class="text-white bg-gradient-to-br from-pink-500 to-orange-400 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800 font-medium rounded-lg text-xl px-5 py-2.5 text-center mr-2 mb-2 ">Submit</button>
-
-            </div>
-
-        </div>
-    </form>
+    <!-- superposition Label -->
+    <span class="text-xl font-medium text-black" id="superpositionLabel"></span>
 
 </div>
 
 
-
-<!--  SuperpositionImage element  -->
-<div  class="max-w-sm mx-auto bg-white border border-gray-200 rounded-xl shadow ">
-    
-    <img id="superpositionImage" class="rounded-t-lg max-w-sm mx-auto" src="" alt="Upload an image and press Submit">
-
-    <!-- padding, max width, center, bg, rounder corners, shadow, flex, center items, padding between child elements  -->
-    <div class="p-6 max-w-sm mx-auto bg-white rounded-xl shadow-lg flex items-center space-x-4">
-
-        <!-- Icon -->
-        <div class="shrink-0">
-
-            <img class="h-12 w-12" src="https://img.icons8.com/?size=512&id=111409&format=png" alt="dog icon">
-
-        </div>
-
-
-        <!-- Classify button -->
-        <div class="text-xl font-medium text-black">
-
-            <button type="submit" id="show-div-superposition" onclick="classifyUploadedImage()">AI classify</button>
-
-        </div>
-
-    </div>
-
-</div>
 
 <!-- Display image -->
 <script>
@@ -188,11 +198,7 @@
     });
 </script>
 
-<!-- Hidden Classify Div -->
-<div id="hidden-superposition" style="display: none;" class="p-6 max-w-xs mx-auto bg-white rounded-xl shadow-lg flex items-center space-x-4 " >
 
-    <!-- superposition Label -->
-    <span class="text-xl font-medium text-black" id="superpositionLabel"></span>
 
 </div>
 
@@ -203,6 +209,7 @@
 
     showDogDiv.addEventListener("click", function() {
     hiddennDogDiv.style.display = "block";
+
 });
 
 </script>
@@ -211,8 +218,10 @@
     const showcatDivButton = document.getElementById("show-div-cat");
     const hiddencatDiv = document.getElementById("hidden-cat");
 
+
     showcatDivButton.addEventListener("click", function() {
         hiddencatDiv.style.display = "block";
+
 });
 
 </script>
