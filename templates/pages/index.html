@@ -99,7 +99,7 @@
 
 
     <!-- Upload Image -->
-    <div class="p-6 max-w-xs mx-auto bg-white rounded-xl shadow-lg flex items-center ">
+    <div class=" max-h-96 p-6 max-w-xs mx-auto bg-white rounded-xl shadow-lg flex items-center ">
 
         <form method="POST" action="{% url 'page:upload_image' %}" enctype="multipart/form-data">
             {% csrf_token %}
@@ -155,12 +155,22 @@
 
     </div>
 
-    <!--  SuperpositionImage element  -->
-    <div  class="max-w-sm mx-auto bg-white border border-gray-200 rounded-xl shadow ">
-        
-        <img id="superpositionImage" class="rounded-t-lg max-w-sm mx-auto" src="" alt="Upload an image and press Submit">
+    <div>
+        <!--  SuperpositionImage element  -->
+        <div  class="max-w-sm mx-auto bg-white border border-gray-200 rounded-xl shadow ">
+            
+            <img id="superpositionImage" class="rounded-t-lg max-w-sm mx-auto" src="" alt="Upload an image and press Submit">
 
+        </div>
+        <!-- Hidden Classify Div -->
+        <div id="hidden-superposition" style="display: none;" class="p-6 max-w-xs mx-auto bg-white rounded-xl shadow-lg flex items-center space-x-4 " >
+
+            <!-- superposition Label -->
+            <span class="text-xl font-medium text-black" id="superpositionLabel"></span>
+
+        </div>
     </div>
+
 </div>
 
 
