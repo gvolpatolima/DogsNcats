@@ -20,74 +20,42 @@
 </head>
 <body onload="fetchDogImage(), fetchCatImage()" class="bg-cover bg-center" style="background-image: url('https://images.pexels.com/photos/952670/pexels-photo-952670.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1')">
 
-    <div class="p-20 mx-auto max-w-sm space-x-4 bg-slate-50 rounded-xl">
-    
-        <div class="bg-white rounded-lg shadow-2xl ">
-            <img id="dogImage" class="md:w-1/3 rounded-t-lg md:rounded-l-lg md:rounded-t-none"></img>
+<div class="p-20 mx-auto max-w-sm space-x-4 bg-slate-50 rounded-xl">
 
-            <img  id="catImage" class="md:w-1/3 rounded-t-lg md:rounded-l-lg md:rounded-t-none" />
-    
-          <div class="p-6">
-    
+    <div class="bg-white rounded-lg shadow-2xl ">
+
+        <img class="rounded-t-lg" id="dogImage"></img>
+
+        <div class="p-6">
+
             <!-- Icon -->
-            <a class="shrink-0">
-    
-                <img class="h-12 w-12" src="https://img.icons8.com/?size=512&id=tgLepcPbp6mP&format=png" alt="dog icon">
-    
-            </a>
-    
+            <div class="shrink-0">
+
+                <img class="h-12 w-12" src="https://img.icons8.com/bubbles/256/dog.png" alt="dog icon">
+
+            </div>
+
             <!-- Fetch button -->
             <div class="text-xl font-medium text-black">
-    
-                <button id="fetchCatBtn" onclick="fetchCatImage()" class="text-white bg-gradient-to-r from-pink-400 via-pink-500 to-pink-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-pink-300 dark:focus:ring-pink-800 font-medium rounded-lg text-lg px-5 py-2.5 text-center mr-2 mb-2">Fetch new cats</button>
-    
+
+                <button id="fetchDogBtn" onclick="fetchDogImage()" class="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-lg px-5 py-2.5 text-center mr-2 mb-2" >Fetch new dogs</button>
+
             </div>
-    
+
             <!-- Classify button -->
             <div class="text-xl font-medium text-black">
-    
-                <button id="show-div-cat" class="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-lg px-5 py-2.5 text-center mr-2 mb-2" >AI classify</button>
-    
+
+                <button id="show-div" >AI classify</button>
+
             </div>
-    
-          </div>
-      
+
         </div>
-        
-      </div>
-
-<!-- padding, max width, center, bg, rounder corners, shadow, flex, center items, padding between child elements  -->
-<div class="p-6 max-w-sm mx-auto bg-white rounded-xl shadow-lg flex items-center space-x-4">
-
-    <!-- Icon -->
-    <div class="shrink-0">
-
-        <img class="h-12 w-12" src="https://img.icons8.com/bubbles/256/dog.png" alt="dog icon">
-
+    
     </div>
-
-    <!-- Fetch button -->
-    <div class="text-xl font-medium text-black">
-
-        <button id="fetchDogBtn" onclick="fetchDogImage()" >Fetch new dogs</button>
-
-    </div>
-
-    <!-- Classify button -->
-    <div class="text-xl font-medium text-black">
-
-        <button id="show-div" >AI classify</button>
-
-    </div>
-
-</div>  
-
-<!-- dogImage element -->
-<div class="p-6 max-w-xs mx-auto bg-white rounded-xl shadow-lg items-center space-x-4 " >
-
-    <img id="dogImage" src="" alt="Wait to get a dog"></img>
-
+    
 </div>
+
+
 
 <!-- Hidden Classify Div -->
 <div id="hidden" style="display: none;" class="p-6 max-w-xs mx-auto bg-white rounded-xl shadow-lg flex items-center space-x-4 " >
@@ -105,7 +73,7 @@
     
     <div class="bg-white rounded-lg shadow-2xl ">
 
-        <img class="rounded-t-lg" id="catImage" class="md:w-1/3 rounded-t-lg md:rounded-l-lg md:rounded-t-none" />
+        <img class="rounded-t-lg" id="catImage"/>
 
       <div class="p-6">
 
