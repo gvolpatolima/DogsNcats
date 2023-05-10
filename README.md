@@ -22,6 +22,8 @@ Features
     TensorFlow (for image classification)
     Django
 
+## Screenshots
+
 ![Screenshot screenshot](001.png)
 ![Screenshot screenshot](002.png)
 
