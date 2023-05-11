@@ -88,26 +88,30 @@ train_data_gen = train_image_generator.flow_from_directory(batch_size=batch_size
 augmented_images = [train_data_gen[0][0][0] for i in range(5)]
 
 
+# Create a sequential model
 model = Sequential([
-    Conv2D(16, (3,3), activation='relu', input_shape=(IMG_HEIGHT, IMG_WIDTH, 3)),
-    MaxPooling2D(2, 2),
-    Conv2D(32, (3,3), activation='relu'),
-    MaxPooling2D(2,2),
-    Conv2D(64, (3,3), activation='relu'),
-    MaxPooling2D(2,2),
-    Flatten(),
-    Dense(512, activation='relu'),
-    Dense(1, activation='sigmoid')
+    Conv2D(16, (3,3), activation='relu', input_shape=(IMG_HEIGHT, IMG_WIDTH, 3)),  # Convolutional layer with 16 filters, 3x3 kernel, ReLU activation, and input shape
+    MaxPooling2D(2, 2),  # Max pooling layer with 2x2 pool size
+    Conv2D(32, (3,3), activation='relu'),  # Convolutional layer with 32 filters and 3x3 kernel
+    MaxPooling2D(2,2),  # Max pooling layer with 2x2 pool size
+    Conv2D(64, (3,3), activation='relu'),  # Convolutional layer with 64 filters and 3x3 kernel
+    MaxPooling2D(2,2),  # Max pooling layer with 2x2 pool size
+    Flatten(),  # Flatten the output for dense layers
+    Dense(512, activation='relu'),  # Fully connected dense layer with 512 units and ReLU activation
+    Dense(1, activation='sigmoid')  # Output layer with 1 unit and sigmoid activation for binary classification
 ])
 
+# Compile the model
 model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['accuracy'])
 
+# Train the model
 history = model.fit(
     train_data_gen,
-    steps_per_epoch=train_data_gen.n // train_data_gen.batch_size,
-    epochs=epochs,
+    steps_per_epoch=train_data_gen.n // train_data_gen.batch_size,  # Set the number of steps per epoch based on the training data generator
+    epochs=epochs,  # Set the number of epochs for training
     validation_data=val_data_gen,
-    validation_steps=val_data_gen.n // val_data_gen.batch_size
+    validation_steps=val_data_gen.n // val_data_gen.batch_size  # Set the number of steps for validation based on the validation data generator
 )
 
+# Save the trained model
 model.save('cat_dog_classifier.h5')
