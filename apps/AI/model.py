@@ -8,20 +8,30 @@ import os
 import numpy as np
 
 
+# Define the working directory into cwd variable
 cwd = os.getcwd()
 
+# Path to the directory containing the images used
 PATH = os.path.join(cwd, 'apps', 'AI', 'cats_and_dogs')
 
+# Define the paths to the train, validation and test directories within cats_and_dogs
 train_dir = os.path.join(cwd, 'apps', 'AI', 'cats_and_dogs', 'train')
 validation_dir = os.path.join(cwd, 'apps', 'AI', 'cats_and_dogs', 'validation')
 test_dir = os.path.join(cwd, 'apps', 'AI', 'cats_and_dogs', 'test')
 
+# Count the total number of files 
 total_train = sum([len(files) for r, d, files in os.walk(train_dir)])
 total_val = sum([len(files) for r, d, files in os.walk(validation_dir)])
 total_test = sum([len(files) for r, d, files in os.walk(test_dir)])
 
+
+# Set the batch size for training
 batch_size = 128
+
+#Set the number of epochs the AI will be running
 epochs = 30
+
+# Define the image proportion
 IMG_HEIGHT = 150
 IMG_WIDTH = 150
 
