@@ -8,7 +8,7 @@ import os
 import numpy as np
 
 
-# Define the working directory into cwd variable
+# Define the working directory into the `cwd` variable
 cwd = os.getcwd()
 
 # Path to the directory containing the images used
@@ -35,50 +35,58 @@ epochs = 30
 IMG_HEIGHT = 150
 IMG_WIDTH = 150
 
-# Format the images to the correct size so the AI can interpret them
-
+# Create image data generators and rescale the images
 train_image_generator = ImageDataGenerator(rescale=1./255)
 validation_image_generator = ImageDataGenerator(rescale=1./255)
 test_image_generator = ImageDataGenerator(rescale=1./255)
 
+# Generate training data from the images in the train directory
 train_data_gen = train_image_generator.flow_from_directory(
     train_dir,
     target_size=(IMG_HEIGHT, IMG_WIDTH),
     batch_size=batch_size,
     class_mode="binary",
 )
+
+# Generate validation data from the images in the validation directory
 val_data_gen = validation_image_generator.flow_from_directory(
     validation_dir,
     target_size=(IMG_HEIGHT, IMG_WIDTH),
     batch_size=batch_size,
     class_mode="binary",
-    seed=42
+    seed=42  # Set a seed for reproducibility
 )
+
+# Generate test data from the images in the PATH directory
 test_data_gen = test_image_generator.flow_from_directory(
     PATH,
     target_size=(IMG_HEIGHT, IMG_WIDTH),
     batch_size=1,
     classes=['test'],
-    shuffle=False,
+    shuffle=False, # Disable shuffling to maintain order
 )
 
+# Define an image data generator for data augmentation during training
 train_image_generator = ImageDataGenerator(
-    rescale=1./255,
-    rotation_range=40,
-    width_shift_range=0.2,
-    height_shift_range=0.2,
-    shear_range=0.2,
-    zoom_range=0.2,
-    horizontal_flip=True,
-    fill_mode='nearest'
+    rescale=1./255,  # Rescale pixel values to [0, 1]
+    rotation_range=40,  # Randomly rotate images by 40 degrees
+    width_shift_range=0.2,  # Randomly shift images horizontally by 20% of the width
+    height_shift_range=0.2,  # Randomly shift images vertically by 20% of the height
+    shear_range=0.2,  # Apply random shearing transformations
+    zoom_range=0.2,  # Apply random zooming transformations
+    horizontal_flip=True,  # Randomly flip images horizontally
+    fill_mode='nearest'  # Use the nearest pixel for filling newly created pixels
 )
 
+# Generate augmented training data from the images in the train directory
 train_data_gen = train_image_generator.flow_from_directory(batch_size=batch_size,
     directory=train_dir,
     target_size=(IMG_HEIGHT, IMG_WIDTH),
     class_mode='binary')
 
+# Select and store a sample of augmented images to precent overfitting
 augmented_images = [train_data_gen[0][0][0] for i in range(5)]
+
 
 model = Sequential([
     Conv2D(16, (3,3), activation='relu', input_shape=(IMG_HEIGHT, IMG_WIDTH, 3)),
