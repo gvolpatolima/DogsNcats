@@ -3,11 +3,8 @@
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
 This website allows users to view pictures of dogs and cats, and use an AI-powered image classification feature to determine whether the displayed image is a dog or a cat. Users can also change the displayed image by clicking on buttons provided on the website.
-Features
 
-    Display images of dogs and cats
-    AI-powered image classification to determine whether the displayed image is a dog or a cat
-    Buttons to change the displayed image
+***
 
 ## Table of Contents
 
