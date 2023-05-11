@@ -41,23 +41,29 @@ Features
 ![Screenshot screenshot](002.png)
 
 
-## Usage
+
+## Instalation
 
     Clone the repository to your local machine.
     Install the requirements.
     Run git-lfs pull
+    Create .env and follow configuration
+
+## Configuration
+
+For this project, you need to set the enviroment variable for Django secret key
+
+| Variable      | Description                  | Default     |
+| ------------- | ---------------------------- | ----------- |
+| `SECRET_KEY`  | Secret Django Key, generate at  https://djecrety.ir/    | `null`   |
+
+## Usage
     Run python manage.py runserver.
     Click on the "Fetch new dogs, cats" button to display a random image of a dog or a cat.
     Click on the "AI classify" button to use the AI-powered image classification feature to determine whether the displayed image is a dog or a cat.
     Repeat steps 5-6 to load and classify different images.
 
-## Configuration
 
-Describe any configuration options or environment variables that your project uses.
-
-| Variable      | Description                  | Default     |
-| ------------- | ---------------------------- | ----------- |
-| `SECRET_KEY`  | Secret Django Key, generate at  https://djecrety.ir/    | `null`   |
 
 ## Contributing
 
