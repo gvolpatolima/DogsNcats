@@ -9,6 +9,17 @@ Features
     AI-powered image classification to determine whether the displayed image is a dog or a cat
     Buttons to change the displayed image
 
+## Table of Contents
+
+- [Features](#features)
+- [Technologies used](#technologies-used)
+- [Screenshots](#screenshots)
+- [Usage](#usage)
+- [Contributing](#contributing)
+- [Credits](#Credits)
+- [License](#license)
+- [Acknowledgements](#acknowledgements)
+
 ## Features
 
 - User-friendly web interface for interacting with the AI
